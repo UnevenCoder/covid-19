@@ -66,20 +66,20 @@ fetch('https://covid2019-api.herokuapp.com/v2/country/'+val)
         <div class="grid">
           <div class="g-box cases">
             <h6 class="g-heading">Total Cases</h6>
-            <h3 id="total-cases">{r1}</h3>
+            <h3 id="total-cases">{r1?r1:'loading'}</h3>
           </div>
           <div class="g-box active">
             <h6 class="g-heading">Total Active</h6>
-            <h3 id="total-active">{r2}</h3>
+            <h3 id="total-active">{r2?r2:'loading'}</h3>
           </div>
 
           <div class="g-box recovered">
             <h6 class="g-heading">Total recovered</h6>
-            <h3 id="total-recovered">{r3}</h3>
+            <h3 id="total-recovered">{r3?r3:'loading'}</h3>
           </div>
           <div class="g-box deaths">
             <h6 class="g-heading">Total Deaths</h6>
-            <h3 id="total-deaths">{r4}</h3>
+            <h3 id="total-deaths">{r4?r4:'loading'}</h3>
           </div>
         </div>
       </section>
