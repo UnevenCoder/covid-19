@@ -21,7 +21,6 @@ i = false
   
 
 	function search(){
-
 if(val.split(' ').length>1){
 
 let url = 'https://covid-api.com/api/reports?q='+val.split(' ').join('%20').toString()
@@ -43,16 +42,16 @@ t4 = parseInt(data.data['0'].deaths).toLocaleString()
 else{
 fetch('https://covid2019-api.herokuapp.com/v2/country/'+val)
 .then(res=>res.json())
-.then(async(data)=>{
-	let str = await val.charAt(0).toUpperCase() + val.slice(1)
+.then((data)=>{
+	let str =  val.charAt(0).toUpperCase() + val.slice(1)
  //confirmed: 90409, deaths: 4738, recovered:
- console.log(data)
  location = data['data'].location
  t1 = parseInt(data['data'].confirmed).toLocaleString()
  t2 = parseInt(data['data'].active).toLocaleString()
  t3 = parseInt(data['data'].recovered).toLocaleString()
  t4 = parseInt(data['data'].deaths).toLocaleString()
 })
+.catch(e => console.log(e))
 }
 }
 
@@ -87,7 +86,9 @@ fetch('https://covid2019-api.herokuapp.com/v2/country/'+val)
         <h2>Search for a particular country here.</h2>
         <div id="search">
           <label for='search-input'>Search</label>
-          <input bind:value={val} on:keydown={e=>e.code=="Enter"?search():''} id="search-input" placeholder="Search" class="search" type="text" >
+          <input bind:value={val} on:keydown={e=>{
+  
+            return e.code=="Enter"?search():''}} id="search-input" placeholder="Search" class="search" type="text" >
           <button class="search-btn" on:click={()=>{
 			search()  
 			return yes=true}} id="search-btn">
