@@ -26,11 +26,11 @@ if(val.split(' ').length>1){
 
 let url = 'https://covid-api.com/api/reports?q='+val.split(' ').join('%20').toString()
 if(val.toLowerCase() == 'united states of america'){url='https://covid-api.com/api/reports?iso=usa'}
-console.log(url)
+
 	fetch(url)
 .then(r=>r.json())
 .then(data=>{
-  console.log(data.data['0'])
+
     location = data.data['0'].region.name ;
     t1 =parseInt(data.data['0'].confirmed).toLocaleString()
     t2 = parseInt(data.data['0'].active).toLocaleString()
@@ -87,7 +87,7 @@ fetch('https://covid2019-api.herokuapp.com/v2/country/'+val)
         <h2>Search for a particular country here.</h2>
         <div id="search">
           <label for='search-input'>Search</label>
-          <input bind:value={val} id="search-input" placeholder="Search" class="search" type="text" >
+          <input bind:value={val} on:keydown={e=>e.code=="Enter"?search():''} id="search-input" placeholder="Search" class="search" type="text" >
           <button class="search-btn" on:click={()=>{
 			search()  
 			return yes=true}} id="search-btn">
@@ -181,7 +181,9 @@ h1 {
   line-height: 1.4;
   font-weight: 500;
 }
-
+input{
+  border:none;
+}
 p {
   opacity: 0.8;
 }
